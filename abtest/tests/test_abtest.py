@@ -32,7 +32,9 @@ class ABPageTests(TestCase):
         html = response.content.decode()
         self.assertEqual(html.count('id="abtest"'), 1)
         self.assertRegex(html, BUTTON_RE)
-        self.assertIn("sleepy-toad", html)
+        # Lists every team member (docs/mgt656/team.yaml).
+        for nickname in ["smoggy-sheep", "gleaming-sheep", "sleepy-toad", "gentle-barracuda", "zany-seahorse"]:
+            self.assertIn(nickname, html)
 
     def test_one_impression_and_sticky_variant_across_reloads(self):
         first = BUTTON_RE.search(self.client.get(self.url).content.decode()).group(1)

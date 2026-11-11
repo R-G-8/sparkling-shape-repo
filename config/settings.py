@@ -19,7 +19,8 @@ def env_bool(name, default=False):
 
 
 def env_list(name, default=""):
-    return [item.strip() for item in os.environ.get(name, default).split(",") if item.strip()]
+    # An empty variable falls back to the default, same as an unset one.
+    return [item.strip() for item in (os.environ.get(name) or default).split(",") if item.strip()]
 
 
 DEBUG = env_bool("DEBUG", False)
@@ -143,4 +144,9 @@ LOGGING = {
 
 # Team info for the A/B test page.
 TEAM_NICKNAME = "sparkling-shape"
-TEAM_MEMBER_NICKNAMES = env_list("TEAM_MEMBER_NICKNAMES", "sleepy-toad")
+# Course nicknames of every member (matches docs/mgt656/team.yaml). The
+# TEAM_MEMBER_NICKNAMES environment variable overrides this list if set.
+TEAM_MEMBER_NICKNAMES = env_list(
+    "TEAM_MEMBER_NICKNAMES",
+    "smoggy-sheep,gleaming-sheep,sleepy-toad,gentle-barracuda,zany-seahorse",
+)

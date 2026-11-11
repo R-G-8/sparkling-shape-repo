@@ -30,10 +30,14 @@ Everything below merged in pull request
 
 ## What works on staging now
 
-<!-- TODO: staging URL -->
-- `/signup`, `/login`, `/dashboard`
-- `/e1531ff` and `/e1531ff/stats`
-- `/healthz`
+Staging: https://numbawatchd-staging.onrender.com
+
+- [`/signup`](https://numbawatchd-staging.onrender.com/signup/),
+  [`/login`](https://numbawatchd-staging.onrender.com/login/),
+  [`/dashboard`](https://numbawatchd-staging.onrender.com/dashboard/)
+- [`/e1531ff`](https://numbawatchd-staging.onrender.com/e1531ff) and
+  [`/e1531ff/stats`](https://numbawatchd-staging.onrender.com/e1531ff/stats)
+- [`/healthz`](https://numbawatchd-staging.onrender.com/healthz)
 
 ## Working with our agents
 
