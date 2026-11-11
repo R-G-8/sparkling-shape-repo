@@ -51,9 +51,8 @@ into a test caught problems before staging.
 
 ## Backlog changes for next sprint
 
-<!-- TODO: link the team GitHub Project once created -->
-- Team GitHub Project linked to the repo, with an iteration for each of the
-  four sprints. Sprint 1 holds #1 and #10; Sprint 2 holds #2–#4.
+- [Team GitHub Project](https://github.com/users/R-G-8/projects/1) linked to
+  the repo, with an iteration for each of the four sprints. Sprint 1 holds #1 and #10; Sprint 2 holds #2–#4.
 - First user stories written from our user journey (watch-history upload,
   ranking, recommendations, friends): [#2](https://github.com/R-G-8/sparkling-shape-repo/issues/2)–[#9](https://github.com/R-G-8/sparkling-shape-repo/issues/9).
 - Sprint 2 commitment: [#2](https://github.com/R-G-8/sparkling-shape-repo/issues/2) download-page guide, [#3](https://github.com/R-G-8/sparkling-shape-repo/issues/3) Netflix CSV
