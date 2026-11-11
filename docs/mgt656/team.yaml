@@ -3,6 +3,10 @@ database: postgres
 members:
   - nickname: sleepy-toad
     github: QuincyR52
-  # TODO: add each teammate's course nickname and GitHub username
-  # - nickname: <course-nickname>
-  #   github: <github-username>
+  # TODO: replace each <nickname> with that teammate's course nickname, then uncomment
+  # - nickname: <nickname>
+  #   github: R-G-8
+  # - nickname: <nickname>
+  #   github: zhwang002
+  # - nickname: <nickname>
+  #   github: sophialahik
