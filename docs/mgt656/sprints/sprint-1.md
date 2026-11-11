@@ -8,6 +8,11 @@ command for grader accounts. No product features yet.
 
 ## What shipped
 
+Everything below merged in pull request
+[#11](https://github.com/R-G-8/sparkling-shape-repo/pull/11), which closed
+[#1](https://github.com/R-G-8/sparkling-shape-repo/issues/1) and
+[#10](https://github.com/R-G-8/sparkling-shape-repo/issues/10).
+
 - Django 5.2 app with sign up, log in, log out, and a logged-in dashboard
   placeholder (Django's built-in authentication). ([#1](https://github.com/R-G-8/sparkling-shape-repo/issues/1))
 - Postgres attached via `DATABASE_URL` (Neon), migrations for all schema.
@@ -42,6 +47,9 @@ into a test caught problems before staging.
 
 ## Backlog changes for next sprint
 
+<!-- TODO: link the team GitHub Project once created -->
+- Team GitHub Project linked to the repo, with an iteration for each of the
+  four sprints. Sprint 1 holds #1 and #10; Sprint 2 holds #2–#4.
 - First user stories written from our user journey (watch-history upload,
   ranking, recommendations, friends): [#2](https://github.com/R-G-8/sparkling-shape-repo/issues/2)–[#9](https://github.com/R-G-8/sparkling-shape-repo/issues/9).
 - Sprint 2 commitment: [#2](https://github.com/R-G-8/sparkling-shape-repo/issues/2) download-page guide, [#3](https://github.com/R-G-8/sparkling-shape-repo/issues/3) Netflix CSV
