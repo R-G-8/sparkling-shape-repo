@@ -18,5 +18,3 @@ services:
         sync: false
       - key: GRADER_MEMBER_PASSWORD
         sync: false
-      - key: TEAM_MEMBER_NICKNAMES
-        sync: false
