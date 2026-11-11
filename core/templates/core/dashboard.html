@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · numbawatchd{% endblock %}
+{% block content %}
+<h1>Welcome, {{ user.username }}</h1>
+<article>
+  <header><strong>Get started</strong></header>
+  <ol class="steps">
+    <li>Download your watch history from your streaming service (Netflix: Account → Profile → Viewing activity → Download all).</li>
+    <li>Upload the CSV here. <em>Coming in Sprint 2.</em></li>
+    <li>Rank what you've watched and get recommendations. <em>Coming soon.</em></li>
+  </ol>
+</article>
+{% endblock %}

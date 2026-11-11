@@ -1,0 +1,8 @@
+framework: django
+database: postgres
+members:
+  - nickname: sleepy-toad
+    github: QuincyR52
+  # TODO: add each teammate's course nickname and GitHub username
+  # - nickname: <course-nickname>
+  #   github: <github-username>

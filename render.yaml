@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: numbawatchd-staging
+    runtime: python
+    plan: free
+    branch: main
+    buildCommand: ./build.sh
+    startCommand: gunicorn config.wsgi --bind 0.0.0.0:$PORT --log-file -
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.13.3"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false   # paste the Neon staging connection string in the Render dashboard
+      - key: GRADER_ADMIN_PASSWORD
+        sync: false
+      - key: GRADER_MEMBER_PASSWORD
+        sync: false
+      - key: TEAM_MEMBER_NICKNAMES
+        sync: false
