@@ -9,15 +9,15 @@ command for grader accounts. No product features yet.
 ## What shipped
 
 - Django 5.2 app with sign up, log in, log out, and a logged-in dashboard
-  placeholder (Django's built-in authentication). <!-- TODO: link PR -->
+  placeholder (Django's built-in authentication). ([#1](https://github.com/R-G-8/sparkling-shape-repo/issues/1))
 - Postgres attached via `DATABASE_URL` (Neon), migrations for all schema.
 - `python manage.py seed`: creates the admin and member grader accounts,
   passwords from environment variables, safe to run repeatedly. Runs on every
-  deploy. <!-- TODO: link PR -->
+  deploy. ([#10](https://github.com/R-G-8/sparkling-shape-repo/issues/10))
 - A/B test page at `/e1531ff` (SHA-1 of `sparkling-shape`) and
   `/e1531ff/stats`. Variant assigned 50/50 on first visit, kept in the session;
   one impression per visitor, at most one click; counts stored with timestamps.
-  <!-- TODO: link PR -->
+  ([#10](https://github.com/R-G-8/sparkling-shape-repo/issues/10))
 - `/healthz` health check, logs to stdout, config in environment variables.
 - GitHub Actions CI runs the tests against Postgres on every pull request.
 - 18 automated tests covering the A/B rules, `/stats`, the seed command, and
@@ -43,6 +43,6 @@ into a test caught problems before staging.
 ## Backlog changes for next sprint
 
 - First user stories written from our user journey (watch-history upload,
-  ranking, recommendations, friends). <!-- TODO: link issues -->
-- Sprint 2 commitment: CSV upload of Netflix watch history and the first
-  ranking screen; set up production.
+  ranking, recommendations, friends): [#2](https://github.com/R-G-8/sparkling-shape-repo/issues/2)–[#9](https://github.com/R-G-8/sparkling-shape-repo/issues/9).
+- Sprint 2 commitment: [#2](https://github.com/R-G-8/sparkling-shape-repo/issues/2) download-page guide, [#3](https://github.com/R-G-8/sparkling-shape-repo/issues/3) Netflix CSV
+  upload, and [#4](https://github.com/R-G-8/sparkling-shape-repo/issues/4) first ranking screen; set up production.
