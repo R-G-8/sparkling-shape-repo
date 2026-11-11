@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Your watch history, ranked.</h1>
+  <p>Upload your streaming history, rank what you've watched, and get recommendations from what you and your friends love.</p>
+  {% if user.is_authenticated %}
+    <a href="{% url 'dashboard' %}" role="button">Go to your dashboard</a>
+  {% else %}
+    <a href="{% url 'signup' %}" role="button">Create an account</a>
+    <a href="{% url 'login' %}" role="button" class="secondary outline">Log in</a>
+  {% endif %}
+</section>
+{% endblock %}

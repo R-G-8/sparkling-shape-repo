@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Team {{ team_nickname }} · numbawatchd{% endblock %}
+{% block content %}
+<article>
+  <h1>Team {{ team_nickname }}</h1>
+  <p>The people building numbawatchd:</p>
+  <ul>
+    {% for nickname in members %}<li>{{ nickname }}</li>{% endfor %}
+  </ul>
+  <form method="post">
+    {% csrf_token %}
+    <button id="abtest" type="submit">{{ variant }}</button>
+  </form>
+  {% if clicked %}<p>Thanks for the click!</p>{% endif %}
+</article>
+{% endblock %}
