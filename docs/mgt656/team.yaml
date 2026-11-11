@@ -1,8 +1,13 @@
-framework: django
-database: postgres
+framework: django        # django | rails | laravel | phoenix | adonisjs
+database: postgres       # postgres | mysql
 members:
+  - nickname: smoggy-sheep        # course nickname (Ian)
+    github: eanao                 # GitHub username
+  - nickname: gleaming-sheep
+    github: R-G-8
   - nickname: sleepy-toad
     github: QuincyR52
-  # TODO: add each teammate's course nickname and GitHub username
-  # - nickname: <course-nickname>
-  #   github: <github-username>
+  - nickname: gentle-barracuda
+    github: zhwang002
+  - nickname: zany-seahorse
+    github: sophialahik
