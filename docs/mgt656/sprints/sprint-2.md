@@ -97,7 +97,8 @@ caught the gaps.
   [#5](https://github.com/R-G-8/sparkling-shape-repo/issues/5) title details
   from an external movie source, cached;
   [#7](https://github.com/R-G-8/sparkling-shape-repo/issues/7) follow friends.
-- Move production's database to a second database in our Neon project before
+- [#19](https://github.com/R-G-8/sparkling-shape-repo/issues/19): move
+  production's database to a second database in our Neon project before
   Sprint 4. Render deletes free Postgres after 30 days, and the A/B run uses
   production. Steps are in the README.
 - Technical-challenge items for Sprint 3: make CI a required check, add an
