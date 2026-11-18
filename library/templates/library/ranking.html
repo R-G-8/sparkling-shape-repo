@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}My ranking · numbawatchd{% endblock %}
+{% block content %}
+<h1>My ranking</h1>
+{% if ranked %}
+  <p>Ordered by your picks. The more you rank, the sharper it gets.</p>
+  <ol class="ranked-list">
+    {% for entry in ranked %}
+      <li><span class="ranked-title">{{ entry.title.name }}</span>
+        <small class="record" title="Times picked over another title, and times another was picked over it">{{ entry.wins }}–{{ entry.losses }}</small></li>
+    {% endfor %}
+  </ol>
+  {% if unranked %}<p>{{ unranked }} more title{{ unranked|pluralize }} not ranked yet.</p>{% endif %}
+  <a href="{% url 'rank' %}" role="button">Keep ranking</a>
+{% elif unranked %}
+  <p>You haven't picked between any titles yet.</p>
+  <a href="{% url 'rank' %}" role="button">Start ranking</a>
+{% else %}
+  <p>Import your watch history first, then rank what you've watched.</p>
+  <a href="{% url 'choose_service' %}" role="button">Import your watch history</a>
+{% endif %}
+{% endblock %}

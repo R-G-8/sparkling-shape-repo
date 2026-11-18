@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ service.name }} · numbawatchd{% endblock %}
+{% block content %}
+<article>
+  <header><strong>{{ service.name }}: coming soon</strong></header>
+  <p>We can't import {{ service.name }} history yet. Netflix works today.</p>
+  {% include "library/_service_picker.html" %}
+</article>
+{% endblock %}

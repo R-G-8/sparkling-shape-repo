@@ -5,6 +5,9 @@ from django.db import connection
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
+from library.models import RankedTitle, ViewingActivity
+from library.services import SERVICES
+
 
 def home(request):
     return render(request, "core/home.html")
@@ -26,7 +29,14 @@ def signup(request):
 
 @login_required
 def dashboard(request):
-    return render(request, "core/dashboard.html")
+    user = request.user
+    context = {
+        "services": SERVICES,
+        "viewings": ViewingActivity.objects.filter(user=user).count(),
+        "titles": RankedTitle.objects.filter(user=user).count(),
+        "picks": user.comparisons.count(),
+    }
+    return render(request, "core/dashboard.html", context)
 
 
 def healthz(request):

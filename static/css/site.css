@@ -3,3 +3,26 @@
 .brand { text-decoration: none; }
 .hero { padding: 2rem 0; }
 .steps li { margin-bottom: 0.4rem; }
+.form-error { color: var(--pico-del-color); display: block; }
+.messages { list-style: none; padding: 0; }
+.messages li { list-style: none; padding: 0.75rem 1rem; border-radius: var(--pico-border-radius); margin-bottom: 0.5rem; background: var(--pico-card-sectioning-background-color); border-left: 4px solid var(--pico-primary); }
+.messages li.error { border-left-color: var(--pico-del-color); }
+.service-picker { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.service-picker li { list-style: none; margin: 0; }
+.service-picker small { opacity: 0.75; }
+.stats { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.stats strong { display: block; font-size: 1.6rem; }
+/* Ranking screen: two cards side by side on every width. */
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; touch-action: pan-y; }
+.pair form { margin: 0; }
+.pick-card { width: 100%; min-height: 9rem; height: 100%; font-size: 1.1rem; font-weight: 600; white-space: normal; word-break: break-word; }
+.pick.picked .pick-card { outline: 4px solid var(--pico-primary-focus); transform: scale(0.98); }
+.hint { opacity: 0.8; }
+.rank-footer { margin-top: 1rem; }
+.ranked-list li { margin-bottom: 0.35rem; }
+.ranked-list .record { opacity: 0.7; margin-left: 0.5rem; }
+.recs li { margin-bottom: 0.75rem; }
+.recs .reason { display: block; opacity: 0.85; }
+/* Let the nav wrap on narrow phones instead of overflowing. */
+header.container nav, header.container nav ul { flex-wrap: wrap; }
+header.container nav ul li { padding-top: 0.25rem; padding-bottom: 0.25rem; }

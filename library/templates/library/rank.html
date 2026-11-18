@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Rank · numbawatchd{% endblock %}
+{% block content %}
+<h1>Which did you like more?</h1>
+{% if pair %}
+  {% with left=pair.0 right=pair.1 %}
+  <p class="hint">Tap or click a title. On a phone you can also swipe toward the one you liked more;
+    on a keyboard, use the ← and → arrow keys.</p>
+  <div class="pair" id="pair">
+    <form method="post" class="pick" data-side="left">
+      {% csrf_token %}
+      <input type="hidden" name="winner" value="{{ left.title_id }}">
+      <input type="hidden" name="loser" value="{{ right.title_id }}">
+      <button type="submit" class="pick-card">{{ left.title.name }}</button>
+    </form>
+    <form method="post" class="pick" data-side="right">
+      {% csrf_token %}
+      <input type="hidden" name="winner" value="{{ right.title_id }}">
+      <input type="hidden" name="loser" value="{{ left.title_id }}">
+      <button type="submit" class="pick-card">{{ right.title.name }}</button>
+    </form>
+  </div>
+  <p class="rank-footer">
+    <a href="{% url 'rank' %}?skip={{ left.title_id }}-{{ right.title_id }}">Skip this pair</a>
+    · {{ picks }} pick{{ picks|pluralize }} so far
+    · <a href="{% url 'my_ranking' %}">See my ranking</a>
+  </p>
+  {% endwith %}
+  <script src="{% static 'js/rank.js' %}" defer></script>
+{% else %}
+  <article>
+    <p>You need at least two titles in your history to start ranking.</p>
+    <a href="{% url 'choose_service' %}" role="button">Import your watch history</a>
+  </article>
+{% endif %}
+{% endblock %}

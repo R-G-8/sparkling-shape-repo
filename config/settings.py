@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "core",
     "abtest",
+    "library",
+    "recommendations",
 ]
 
 MIDDLEWARE = [
@@ -126,6 +128,9 @@ STORAGES = {
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# Uploads (watch-history CSVs, 5 MB max) stay in memory and never touch local disk.
+FILE_UPLOAD_MAX_MEMORY_SIZE = 6 * 1024 * 1024
+
 # Sessions last a year so A/B visitors keep their variant.
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 365
 
@@ -141,6 +146,13 @@ LOGGING = {
     "handlers": {"console": {"class": "logging.StreamHandler"}},
     "root": {"handlers": ["console"], "level": os.environ.get("LOG_LEVEL", "INFO")},
 }
+
+# AI recommendations through OpenRouter, called from the server only.
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
+OPENROUTER_MODEL = os.environ.get("OPENROUTER_MODEL") or "anthropic/claude-haiku-4.5"
+OPENROUTER_TIMEOUT_SECONDS = float(os.environ.get("OPENROUTER_TIMEOUT_SECONDS") or 25)
+# Per-user cap on LLM calls in any 24 hours, to protect the course's credits.
+RECOMMENDATIONS_DAILY_LIMIT = int(os.environ.get("RECOMMENDATIONS_DAILY_LIMIT") or 10)
 
 # Team info for the A/B test page.
 TEAM_NICKNAME = "sparkling-shape"

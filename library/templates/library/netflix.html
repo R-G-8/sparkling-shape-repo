@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Import from Netflix · numbawatchd{% endblock %}
+{% block content %}
+<h1>Import your Netflix history</h1>
+
+<article>
+  <header><strong>Step 2: Download your viewing activity</strong></header>
+  <ol class="steps">
+    <li>In a web browser (the Netflix app can't do this), open
+      <a href="https://www.netflix.com/viewingactivity" target="_blank" rel="noopener">netflix.com/viewingactivity</a>
+      and sign in.</li>
+    <li>If Netflix asks, choose your profile. Each profile has its own history.</li>
+    <li>Scroll to the bottom of the list and select <strong>Download all</strong>.</li>
+    <li>Your browser saves a file called <code>NetflixViewingHistory.csv</code>, usually in Downloads.</li>
+  </ol>
+  <a href="https://www.netflix.com/viewingactivity" target="_blank" rel="noopener" role="button" class="secondary">Open Netflix viewing activity</a>
+</article>
+
+<article>
+  <header><strong>Step 3: Upload the file</strong></header>
+  {% if error %}<p class="form-error" role="alert">{{ error }}</p>{% endif %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="{{ form.file.id_for_label }}">{{ form.file.label }}</label>
+    {{ form.file }}
+    {% for err in form.file.errors %}<small class="form-error" role="alert">{{ err }}</small>{% endfor %}
+    <small>A .csv file up to 5 MB. We save each title and date to your account, and uploading the same file again won't add duplicates.</small>
+    <button type="submit">Upload</button>
+  </form>
+  <p><small>No Netflix account handy? Try our
+    <a href="{% static 'samples/NetflixViewingHistory-sample.csv' %}" download>sample file</a>.</small></p>
+</article>
+
+<p><a href="{% url 'choose_service' %}">Use a different service</a></p>
+{% endblock %}
