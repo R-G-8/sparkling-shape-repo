@@ -2,12 +2,35 @@
 {% block title %}Dashboard · numbawatchd{% endblock %}
 {% block content %}
 <h1>Welcome, {{ user.username }}</h1>
-<article>
-  <header><strong>Get started</strong></header>
-  <ol class="steps">
-    <li>Download your watch history from your streaming service (Netflix: Account → Profile → Viewing activity → Download all).</li>
-    <li>Upload the CSV here. <em>Coming in Sprint 2.</em></li>
-    <li>Rank what you've watched and get recommendations. <em>Coming soon.</em></li>
-  </ol>
-</article>
+{% if not viewings %}
+  <article id="choose-service">
+    <header><strong>Step 1: Choose your service</strong></header>
+    <p>Start by importing your watch history. Pick where you watch and we'll show you how to download it.</p>
+    {% include "library/_service_picker.html" %}
+  </article>
+  <article>
+    <header><strong>What happens next</strong></header>
+    <ol class="steps">
+      <li>Download your watch history and upload it here.</li>
+      <li>Rank what you've watched, two titles at a time.</li>
+      <li>Get recommendations from your rankings.</li>
+    </ol>
+  </article>
+{% else %}
+  <article>
+    <div class="stats">
+      <div><strong>{{ titles }}</strong> title{{ titles|pluralize }} in your history</div>
+      <div><strong>{{ viewings }}</strong> viewing record{{ viewings|pluralize }}</div>
+      <div><strong>{{ picks }}</strong> pick{{ picks|pluralize }} made</div>
+    </div>
+  </article>
+  <article>
+    <header><strong>{% if picks %}Keep going{% else %}Next: rank what you've watched{% endif %}</strong></header>
+    <p>We show you two titles at a time; pick the one you liked more.</p>
+    <a href="{% url 'rank' %}" role="button">{% if picks %}Keep ranking{% else %}Start ranking{% endif %}</a>
+    <a href="{% url 'my_ranking' %}" role="button" class="secondary outline">My ranking</a>
+    <a href="{% url 'recommendations' %}" role="button" class="secondary outline">Recommendations</a>
+  </article>
+  <p><a href="{% url 'choose_service' %}">Import more history</a></p>
+{% endif %}
 {% endblock %}
