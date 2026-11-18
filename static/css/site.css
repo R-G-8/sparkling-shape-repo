@@ -305,6 +305,96 @@ article > header { background: transparent; border-bottom: 1px solid var(--nw-se
   font-weight: 600;
 }
 
+/* ---------- Import, ranking and recommendations ---------- */
+.steps li { margin-bottom: 0.4rem; }
+small.form-error { display: block; background: none; padding: 0; font-size: 0.875rem; }
+
+/* Flash messages: tinted callouts; errors use the signal color, never color alone (the text says it). */
+.messages { list-style: none; padding: 0; }
+.messages li {
+  list-style: none;
+  padding: 0.75rem 1rem;
+  border-radius: var(--nw-radius-field);
+  margin-bottom: 0.5rem;
+  background: var(--nw-card);
+  border-left: 4px solid var(--nw-accent);
+}
+.messages li.error { border-left-color: var(--nw-signal); background: var(--nw-signal-fill); }
+
+.service-picker { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.service-picker li { list-style: none; margin: 0; }
+.service-picker [role="button"] { margin: 0; }
+.service-picker small { color: inherit; opacity: 0.8; font-weight: 500; }
+
+.stats { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.stats strong {
+  display: block;
+  font-family: var(--nw-font-rounded);
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  color: var(--nw-accent);
+}
+.stats div { color: var(--nw-secondary); }
+
+/* Ranking screen: two cards side by side on every width. */
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; touch-action: pan-y; }
+.pair form { margin: 0; }
+.pair .pick-card {
+  width: 100%;
+  min-height: 9rem;
+  height: 100%;
+  border-radius: var(--nw-radius-card);
+  background: var(--nw-card);
+  color: var(--nw-content);
+  border: 1px solid var(--nw-field-border);
+  font-size: 1.1rem;
+  font-weight: 600;
+  white-space: normal;
+  word-break: break-word;
+}
+.pair .pick-card:hover { border-color: var(--nw-accent); background: var(--nw-card); color: var(--nw-content); }
+.pick.picked .pick-card { outline: 4px solid var(--nw-focus); border-color: var(--nw-accent); transform: scale(0.98); }
+.hint { color: var(--nw-secondary); }
+.rank-footer { margin-top: 1rem; color: var(--nw-secondary); }
+
+/* My ranking: the full list wears the rank numerals too. */
+.ranked-list { counter-reset: rank; padding: 0; }
+.ranked-list li {
+  counter-increment: rank;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto;
+  column-gap: 0.75rem;
+  align-items: baseline;
+  padding-block: 0.625rem;
+  margin: 0;
+  border-bottom: 1px solid var(--nw-separator);
+}
+.ranked-list li::before {
+  content: counter(rank);
+  font-family: var(--nw-font-rounded);
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--nw-accent);
+  text-align: end;
+}
+.ranked-list .record { color: var(--nw-secondary); font-variant-numeric: tabular-nums; }
+
+.recs li { margin-bottom: 0.75rem; }
+.recs .reason { display: block; color: var(--nw-secondary); }
+
+/* Let the nav wrap on narrow phones instead of overflowing. A wrapped header
+   is too tall to pin, so it scrolls away with the page there. */
+.site-header nav, .site-header nav ul { flex-wrap: wrap; }
+@media (max-width: 47.99rem) {
+  .site-header { position: static; }
+  .site-header nav ul { --pico-nav-element-spacing-vertical: 0.125rem; --pico-nav-element-spacing-horizontal: 0.375rem; }
+}
+
 /* ---------- Motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }

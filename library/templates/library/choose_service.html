@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Choose your service · numbawatchd{% endblock %}
+{% block content %}
+<article>
+  <header><strong>Step 1: Choose your service</strong></header>
+  <p>Where do you watch? We'll show you how to download your watch history from it.</p>
+  {% include "library/_service_picker.html" %}
+</article>
+{% endblock %}

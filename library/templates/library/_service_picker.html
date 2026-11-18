@@ -1,0 +1,9 @@
+<ul class="service-picker">
+  {% for service in services %}
+    <li>
+      <a href="{% url 'service_import' service.slug %}" role="button"{% if not service.supported %} class="secondary outline"{% endif %}>
+        {{ service.name }}{% if not service.supported %} <small>coming soon</small>{% endif %}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

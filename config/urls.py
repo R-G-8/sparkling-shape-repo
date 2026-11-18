@@ -12,5 +12,7 @@ urlpatterns = [
     path("dashboard/", core_views.dashboard, name="dashboard"),
     path("healthz", core_views.healthz, name="healthz"),
     path("admin/", admin.site.urls),
+    path("", include("library.urls")),
+    path("", include("recommendations.urls")),
     path("", include("abtest.urls")),
 ]

@@ -1,0 +1,46 @@
+# Deliberate promotion to production. Staging deploys every merge to `main`;
+# production (Render service `numbawatchd`) deploys the `production` branch.
+# Run this from Actions -> "Promote to production" -> Run workflow. It only
+# promotes a commit whose CI run passed, and only by fast-forward.
+name: Promote to production
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Commit or branch to promote (default: main)"
+        required: false
+        default: main
+permissions:
+  contents: write
+  checks: read
+concurrency: promote-production
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Resolve commit
+        id: commit
+        env:
+          REF: ${{ inputs.ref }}
+        run: |
+          sha=$(git rev-parse --verify "origin/${REF}^{commit}" 2>/dev/null || git rev-parse --verify "${REF}^{commit}")
+          git merge-base --is-ancestor "$sha" origin/main || { echo "::error::$sha is not on main"; exit 1; }
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "Promoting $(git log -1 --format='%h %s' "$sha")"
+      - name: Require a passing CI run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          conclusion=$(gh api "repos/${{ github.repository }}/commits/${{ steps.commit.outputs.sha }}/check-runs?check_name=test" --jq '[.check_runs[].conclusion] | if length == 0 then "missing" elif all(. == "success") then "success" else "failure" end')
+          echo "CI for ${{ steps.commit.outputs.sha }}: $conclusion"
+          [ "$conclusion" = "success" ] || { echo "::error::CI has not passed for this commit"; exit 1; }
+      - name: Fast-forward production
+        run: |
+          if git rev-parse --verify -q origin/production >/dev/null; then
+            git merge-base --is-ancestor origin/production "${{ steps.commit.outputs.sha }}" || { echo "::error::production has commits that are not on this commit; refusing to rewrite it"; exit 1; }
+          fi
+          git push origin "${{ steps.commit.outputs.sha }}:refs/heads/production"
+          echo "### Promoted \`${{ steps.commit.outputs.sha }}\` to production" >> "$GITHUB_STEP_SUMMARY"

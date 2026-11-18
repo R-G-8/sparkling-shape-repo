@@ -5,6 +5,8 @@ from django.core.management import CommandError, call_command
 from django.test import TestCase
 from django.urls import reverse
 
+from library.models import RankedTitle, Title, ViewingActivity
+
 GRADER_ENV = {
     "GRADER_ADMIN_PASSWORD": "test-admin-pw-123",
     "GRADER_MEMBER_PASSWORD": "test-member-pw-456",
@@ -28,6 +30,23 @@ class SeedCommandTests(TestCase):
         call_command("seed", stdout=mock.MagicMock())
         call_command("seed", stdout=mock.MagicMock())
         self.assertEqual(get_user_model().objects.count(), 2)
+        admin = get_user_model().objects.get(username="admin@example.com")
+        self.assertEqual(ViewingActivity.objects.filter(user=admin).count(), 45)
+        self.assertEqual(Title.objects.count(), 29)
+
+    @mock.patch.dict("os.environ", GRADER_ENV)
+    def test_demo_data_for_admin_only(self):
+        call_command("seed", stdout=mock.MagicMock())
+        admin = get_user_model().objects.get(username="admin@example.com")
+        member = get_user_model().objects.get(username="member@example.com")
+        self.assertEqual(RankedTitle.objects.filter(user=admin).count(), 29)
+        # The member grader starts empty so graders see the first-run flow.
+        self.assertFalse(ViewingActivity.objects.filter(user=member).exists())
+
+    @mock.patch.dict("os.environ", GRADER_ENV)
+    def test_no_demo_flag(self):
+        call_command("seed", "--no-demo", stdout=mock.MagicMock())
+        self.assertEqual(ViewingActivity.objects.count(), 0)
 
     @mock.patch.dict("os.environ", {}, clear=True)
     def test_requires_passwords(self):

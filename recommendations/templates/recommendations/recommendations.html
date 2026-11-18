@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Recommendations · numbawatchd{% endblock %}
+{% block content %}
+<h1>Recommended for you</h1>
+{% if not has_history %}
+  <p>Import your watch history first, so we know what you like.</p>
+  <a href="{% url 'choose_service' %}" role="button">Import your watch history</a>
+{% else %}
+  {% if latest %}
+    <ol class="recs">
+      {% for rec in latest.items.all %}
+        <li><strong>{{ rec.title }}</strong>{% if rec.year %} ({{ rec.year }}){% endif %}{% if rec.kind %} <small>· {{ rec.get_kind_display }}</small>{% endif %}
+          <span class="reason">{{ rec.reason }}</span></li>
+      {% endfor %}
+    </ol>
+    <p><small>Based on {{ latest.based_on|join:", "|truncatechars:200 }} · {{ latest.created_at|timesince }} ago</small></p>
+  {% else %}
+    <p>We'll suggest something new from what you've ranked highest. The more you rank, the better these get.</p>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" aria-busy="false" onclick="this.setAttribute('aria-busy','true')">{% if latest %}Get new recommendations{% else %}Get recommendations{% endif %}</button>
+  </form>
+  <p><small>Recommendations are written by an AI model and can be wrong about what's on your services.</small></p>
+{% endif %}
+{% endblock %}
