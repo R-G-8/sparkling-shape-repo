@@ -38,7 +38,7 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: DATABASE_URL
-        sync: false   # Neon *production* connection string: a different database from staging
+        sync: false   # production's own database (Render Postgres for now, then Neon); never staging's
       - key: GRADER_ADMIN_PASSWORD
         sync: false
       - key: GRADER_MEMBER_PASSWORD
