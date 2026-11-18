@@ -44,6 +44,14 @@ Try the import with `static/samples/NetflixViewingHistory-sample.csv` (also
 linked from the upload page). `seed` loads that sample into the admin grader
 account; the member grader starts empty.
 
+## Design
+
+The UI is Pico CSS themed by the design tokens in `static/css/site.css`,
+grounded in Apple's Human Interface Guidelines. The review behind it is in
+`docs/design/apple-design-review.md`. In Claude Code, the `apple-design` skill
+(vendored in `.claude/skills/apple-design`) reviews and improves screens. Run
+it as `/apple-design`, or just ask for a design review.
+
 ## Deploy (Render + Postgres)
 
 | | Staging | Production |

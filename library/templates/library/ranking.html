@@ -4,7 +4,7 @@
 <h1>My ranking</h1>
 {% if ranked %}
   <p>Ordered by your picks. The more you rank, the sharper it gets.</p>
-  <ol class="ranked-list">
+  <ol class="ranked-list" role="list">
     {% for entry in ranked %}
       <li><span class="ranked-title">{{ entry.title.name }}</span>
         <small class="record" title="Times picked over another title, and times another was picked over it">{{ entry.wins }}–{{ entry.losses }}</small></li>

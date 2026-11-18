@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Dashboard · numbawatchd{% endblock %}
 {% block content %}
-<h1>Welcome, {{ user.username }}</h1>
+<h1>Welcome</h1>
+<p class="lede">Signed in as <strong>{{ user.username }}</strong></p>
 {% if not viewings %}
   <article id="choose-service">
     <header><strong>Step 1: Choose your service</strong></header>
@@ -10,10 +11,10 @@
   </article>
   <article>
     <header><strong>What happens next</strong></header>
-    <ol class="steps">
-      <li>Download your watch history and upload it here.</li>
-      <li>Rank what you've watched, two titles at a time.</li>
-      <li>Get recommendations from your rankings.</li>
+    <ol class="ranked" role="list">
+      <li><div><strong>Upload your watch history</strong><span class="detail">Download it from your service and upload it here.</span></div></li>
+      <li><div><strong>Rank what you've watched</strong><span class="detail">Two titles at a time; pick the one you liked more.</span></div></li>
+      <li><div><strong>Get recommendations</strong><span class="detail">Based on your rankings.</span></div></li>
     </ol>
   </article>
 {% else %}
@@ -27,9 +28,11 @@
   <article>
     <header><strong>{% if picks %}Keep going{% else %}Next: rank what you've watched{% endif %}</strong></header>
     <p>We show you two titles at a time; pick the one you liked more.</p>
+    <div class="actions">
     <a href="{% url 'rank' %}" role="button">{% if picks %}Keep ranking{% else %}Start ranking{% endif %}</a>
     <a href="{% url 'my_ranking' %}" role="button" class="secondary outline">My ranking</a>
     <a href="{% url 'recommendations' %}" role="button" class="secondary outline">Recommendations</a>
+    </div>
   </article>
   <p><a href="{% url 'choose_service' %}">Import more history</a></p>
 {% endif %}
