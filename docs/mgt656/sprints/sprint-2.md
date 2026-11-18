@@ -8,6 +8,13 @@ database, and moving a change to it is a deliberate step.
 
 ## What shipped
 
+Everything below shipped in pull request
+[#17](https://github.com/R-G-8/sparkling-shape-repo/pull/17), which closes
+[#2](https://github.com/R-G-8/sparkling-shape-repo/issues/2),
+[#3](https://github.com/R-G-8/sparkling-shape-repo/issues/3) and
+[#4](https://github.com/R-G-8/sparkling-shape-repo/issues/4) and starts
+[#6](https://github.com/R-G-8/sparkling-shape-repo/issues/6).
+
 - **Find my watch-history download page**
   ([#2](https://github.com/R-G-8/sparkling-shape-repo/issues/2)). A new user's
   dashboard opens on "Step 1: Choose your service". Netflix shows step-by-step
