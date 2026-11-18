@@ -42,10 +42,11 @@ Everything below shipped in pull request
   one-line reason, caps each user at 10 calls a day, and shows a friendly
   message on any failure. Tested with the LLM mocked. Not yet tried with the
   course key, so #6 stays open.
-- **Production:** a second Render service (`numbawatchd`) with its own Neon
+- **Production:** a second Render service (`numbawatchd`) with its own
   database. It deploys the `production` branch, which moves only when someone
   runs the **Promote to production** GitHub Action, and only for a commit
-  whose CI passed.
+  whose CI passed. We couldn't get into the Neon account staging uses tonight,
+  so production's database is a free Render Postgres for now.
 - **Seed demo data:** `seed` now loads the sample history into the admin
   grader account, and it's still safe to rerun.
 - 79 automated tests, up from 18. They pass on Postgres (CI) and SQLite.
@@ -96,6 +97,9 @@ caught the gaps.
   [#5](https://github.com/R-G-8/sparkling-shape-repo/issues/5) title details
   from an external movie source, cached;
   [#7](https://github.com/R-G-8/sparkling-shape-repo/issues/7) follow friends.
+- Move production's database to a second database in our Neon project before
+  Sprint 4. Render deletes free Postgres after 30 days, and the A/B run uses
+  production. Steps are in the README.
 - Technical-challenge items for Sprint 3: make CI a required check, add an
   evaluation set for the recommendation prompt, and move the browser
   walkthrough into CI.
