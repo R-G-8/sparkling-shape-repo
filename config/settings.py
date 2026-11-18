@@ -147,7 +147,9 @@ LOGGING = {
     "root": {"handlers": ["console"], "level": os.environ.get("LOG_LEVEL", "INFO")},
 }
 
-# AI recommendations through OpenRouter, called from the server only.
+# OpenRouter (LLM calls for recommendations and, later, the watch personality).
+# Only the server reads this key; it must never be sent to the browser.
+# Set it in the Render dashboard and in your local .env, never in code.
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_MODEL = os.environ.get("OPENROUTER_MODEL") or "anthropic/claude-haiku-4.5"
 OPENROUTER_TIMEOUT_SECONDS = float(os.environ.get("OPENROUTER_TIMEOUT_SECONDS") or 25)

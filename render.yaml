@@ -22,7 +22,7 @@ services:
       - key: GRADER_MEMBER_PASSWORD
         sync: false
       - key: OPENROUTER_API_KEY
-        sync: false   # course OpenRouter key; recommendations show a friendly message without it
+        sync: false   # paste the course OpenRouter key in the Render dashboard
 
   - type: web
     name: numbawatchd
