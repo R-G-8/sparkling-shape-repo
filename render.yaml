@@ -1,3 +1,6 @@
+# Two services, two databases. Staging deploys every merge to `main`; production
+# deploys only the `production` branch, which moves forward when someone runs the
+# "Promote to production" GitHub Action (.github/workflows/promote.yml).
 services:
   - type: web
     name: numbawatchd-staging
@@ -13,8 +16,32 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: DATABASE_URL
-        sync: false   # paste the Neon staging connection string in the Render dashboard
+        sync: false   # Neon *staging* connection string
       - key: GRADER_ADMIN_PASSWORD
         sync: false
       - key: GRADER_MEMBER_PASSWORD
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false   # course OpenRouter key; recommendations show a friendly message without it
+
+  - type: web
+    name: numbawatchd
+    runtime: python
+    plan: free
+    branch: production
+    buildCommand: ./build.sh
+    startCommand: gunicorn config.wsgi --bind 0.0.0.0:$PORT --log-file -
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.13.3"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false   # Neon *production* connection string: a different database from staging
+      - key: GRADER_ADMIN_PASSWORD
+        sync: false
+      - key: GRADER_MEMBER_PASSWORD
+        sync: false
+      - key: OPENROUTER_API_KEY
         sync: false
