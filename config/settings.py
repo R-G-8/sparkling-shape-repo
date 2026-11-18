@@ -142,6 +142,11 @@ LOGGING = {
     "root": {"handlers": ["console"], "level": os.environ.get("LOG_LEVEL", "INFO")},
 }
 
+# OpenRouter (LLM calls for recommendations and the watch personality).
+# Only the server reads this key; it must never be sent to the browser.
+# Set it in the Render dashboard and in your local .env, never in code.
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
+
 # Team info for the A/B test page.
 TEAM_NICKNAME = "sparkling-shape"
 # Course nicknames of every member (matches docs/mgt656/team.yaml). The

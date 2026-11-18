@@ -18,3 +18,5 @@ services:
         sync: false
       - key: GRADER_MEMBER_PASSWORD
         sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false   # paste the course OpenRouter key in the Render dashboard
