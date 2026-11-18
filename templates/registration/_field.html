@@ -1,0 +1,7 @@
+{# One form field: label, input, then its errors and hint. Django points the input's aria-describedby at "<id>_helptext". #}
+<div class="field">
+  <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+  {{ field }}
+  {{ field.errors }}
+  {% if field.help_text %}<div class="field-help" id="{{ field.auto_id }}_helptext">{{ field.help_text|safe }}</div>{% endif %}
+</div>

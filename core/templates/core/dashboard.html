@@ -1,13 +1,23 @@
 {% extends "base.html" %}
 {% block title %}Dashboard · numbawatchd{% endblock %}
 {% block content %}
-<h1>Welcome, {{ user.username }}</h1>
-<article>
-  <header><strong>Get started</strong></header>
-  <ol class="steps">
-    <li>Download your watch history from your streaming service (Netflix: Account → Profile → Viewing activity → Download all).</li>
-    <li>Upload the CSV here. <em>Coming in Sprint 2.</em></li>
-    <li>Rank what you've watched and get recommendations. <em>Coming soon.</em></li>
+<h1>Welcome</h1>
+<p class="lede">Signed in as <strong>{{ user.username }}</strong></p>
+<article class="measure">
+  <h2>Get started</h2>
+  <ol class="ranked" role="list">
+    <li><div>
+      <strong>Download your watch history</strong>
+      <span class="detail">On Netflix: Account → Profile → Viewing activity → Download all.</span>
+    </div></li>
+    <li><div>
+      <strong>Upload the CSV here</strong>
+      <span class="status">Coming soon</span>
+    </div></li>
+    <li><div>
+      <strong>Rank what you've watched and get recommendations</strong>
+      <span class="status">Coming soon</span>
+    </div></li>
   </ol>
 </article>
 {% endblock %}

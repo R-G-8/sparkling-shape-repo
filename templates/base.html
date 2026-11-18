@@ -3,14 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
   <title>{% block title %}numbawatchd{% endblock %}</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.min.css">
   <link rel="stylesheet" href="{% static 'css/site.css' %}">
 </head>
 <body>
-  <header class="container">
-    <nav>
-      <ul><li><a href="{% url 'home' %}" class="brand"><strong>numbawatchd</strong></a></li></ul>
+  <header class="site-header">
+    <nav class="container">
+      <ul><li><a href="{% url 'home' %}" class="brand">numbawatchd</a></li></ul>
       <ul>
         {% if user.is_authenticated %}
           <li><a href="{% url 'dashboard' %}">Dashboard</a></li>

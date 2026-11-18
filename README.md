@@ -36,6 +36,14 @@ SECRET_KEY=x python manage.py test
 | `/healthz` | health check |
 | `/admin` | Django admin (admin grader account) |
 
+## Design
+
+The UI is Pico CSS themed by the design tokens in `static/css/site.css`,
+grounded in Apple's Human Interface Guidelines. The review behind it is in
+`docs/design/apple-design-review.md`. In Claude Code, the `apple-design` skill
+(vendored in `.claude/skills/apple-design`) reviews and improves screens. Run
+it as `/apple-design`, or just ask for a design review.
+
 ## Deploy (Render + Neon)
 
 `render.yaml` defines the staging web service. `build.sh` installs, collects

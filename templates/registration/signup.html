@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 {% block title %}Sign up · numbawatchd{% endblock %}
 {% block content %}
-<article>
+<article class="auth">
   <h1>Create an account</h1>
+  {% if form.non_field_errors %}<div class="form-error" role="alert">{{ form.non_field_errors }}</div>{% endif %}
   <form method="post">
     {% csrf_token %}
-    {{ form.as_div }}
+    {% for field in form %}
+      {% include "registration/_field.html" %}
+    {% endfor %}
     <button type="submit">Sign up</button>
   </form>
-  <p>Already have an account? <a href="{% url 'login' %}">Log in</a>.</p>
+  <p class="switch">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
 </article>
 {% endblock %}
